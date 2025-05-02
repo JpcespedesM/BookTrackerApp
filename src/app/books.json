@@ -1,0 +1,33 @@
+[
+    {
+      "title": "Cien años de soledad",
+      "isbn": "978-0307474728",
+      "author": "Gabriel García Márquez",
+      "description": "Una saga familiar mágica en el mítico pueblo de Macondo."
+    },
+    {
+      "title": "1984",
+      "isbn": "978-0451524935",
+      "author": "George Orwell",
+      "description": "Una distopía sobre vigilancia y control totalitario."
+    },
+    {
+      "title": "El nombre del viento",
+      "isbn": "978-0756404741",
+      "author": "Patrick Rothfuss",
+      "description": "La historia de Kvothe, un músico y mago legendario."
+    },
+    {
+      "title": "Orgullo y prejuicio",
+      "isbn": "978-1503290563",
+      "author": "Jane Austen",
+      "description": "Un clásico sobre amor y clases sociales en la Inglaterra del siglo XIX."
+    },
+    {
+      "title": "El señor de los anillos",
+      "isbn": "978-0618640157",
+      "author": "J.R.R. Tolkien",
+      "description": "La épica aventura para destruir el Anillo Único."
+    }
+  ]
+  
