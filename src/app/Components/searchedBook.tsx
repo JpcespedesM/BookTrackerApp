@@ -5,7 +5,7 @@ import React from "react";
 
 export default function SearchedBook(props: { title: string; }) {
   
-  const { selectedBook, setSelectedBook, filterBooks } = useBooks();
+  const { selectedBook, setSelectedBook, filterBooks, handleAddToReadingList, handleAddToAlreadyReadList, handleAddToWantToReadList } = useBooks();
 
   if (filterBooks(props.title).length === 0) {
     return <p>No books found</p>;
@@ -30,13 +30,13 @@ export default function SearchedBook(props: { title: string; }) {
           );
             
         })}
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded mx-2">
+        <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => handleAddToReadingList()}>
             Reading
         </button>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded mx-2">
+        <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => handleAddToAlreadyReadList()}>
             Already Read
         </button>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded mx-2">
+        <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => handleAddToWantToReadList()}>
             Want to Read
         </button>
     </>
