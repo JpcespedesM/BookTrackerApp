@@ -11,9 +11,9 @@ import Link from "next/link";
               Home
             </Link>
           <li>
-            <a href="/add-book" className="hover:underline">
+          <Link href="/Profile" className="hover:underline">
               Profile
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

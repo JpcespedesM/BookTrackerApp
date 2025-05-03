@@ -19,13 +19,13 @@ export function useBooks() {
   const addToList = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, listName: string) => {
     if (!list.includes(selectedBook)) {
       setList([...list, selectedBook]);
+      window.localStorage.setItem(listName, JSON.stringify([...list, selectedBook]));
       console.log(`Added ${selectedBook} to ${listName} list`);
     } else {
       console.log(`${selectedBook} is already in the ${listName} list`);
     }
   };
   
-
   return {
     selectedBook,
     readingList,
