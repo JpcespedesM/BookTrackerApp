@@ -16,42 +16,26 @@ export function useBooks() {
     );
   };
 
-  const handleAddToReadingList = () => {
-    if (!readingList.includes(selectedBook)) {
-      setReadingList([...readingList, selectedBook]);
-      console.log(`Added ${selectedBook} to reading list`);
-    }
-    else {
-      console.log(`${selectedBook} is already in the reading list`);
-    }
-  };
-
-  const handleAddToAlreadyReadList = () => {
-    if (!alreadyReadList.includes(selectedBook)) {
-      setAlreadyReadList([...alreadyReadList, selectedBook]);
-      console.log(`Added ${selectedBook} to already read list`);
-    }
-    else {
-      console.log(`${selectedBook} is already in the already read list`);
+  const addToList = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, listName: string) => {
+    if (!list.includes(selectedBook)) {
+      setList([...list, selectedBook]);
+      console.log(`Added ${selectedBook} to ${listName} list`);
+    } else {
+      console.log(`${selectedBook} is already in the ${listName} list`);
     }
   };
-
-  const handleAddToWantToReadList = () => {
-    if (!wantToReadList.includes(selectedBook)) {
-      setWantToReadList([...wantToReadList, selectedBook]);
-      console.log(`Added ${selectedBook} to want to read list`);
-    }
-    else {
-      console.log(`${selectedBook} is already in the want to read list`);
-    }
-  };
+  
 
   return {
     selectedBook,
+    readingList,
+    alreadyReadList,
+    wantToReadList,
+    setReadingList,
+    setAlreadyReadList,
+    setWantToReadList,
     setSelectedBook,
     filterBooks,
-    handleAddToReadingList,
-    handleAddToAlreadyReadList,
-    handleAddToWantToReadList,
+    addToList
   };
 }

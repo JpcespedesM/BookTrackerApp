@@ -5,19 +5,17 @@ import React from "react";
 
 export default function SearchedBook(props: { title: string; }) {
   
-  const { selectedBook, setSelectedBook, filterBooks, handleAddToReadingList, handleAddToAlreadyReadList, handleAddToWantToReadList } = useBooks();
+  const { selectedBook, readingList, alreadyReadList, wantToReadList, setSelectedBook, filterBooks, addToList, setReadingList, setAlreadyReadList, setWantToReadList } = useBooks();
 
-  if (filterBooks(props.title).length === 0) {
+  const filteredBooks = filterBooks(props.title);
+
+  if (filteredBooks.length === 0) {
     return <p>No books found</p>;
-  }
-
-  const handleButtonClick = (book: { title: string; }) => {
-    console.log(`Button clicked for book: ${book.title}`);
   }
   
     return (
     <>
-        {filterBooks(props.title).map((book) => {
+        {filteredBooks.map((book) => {
             
           return (
               <button type="button" key={book.isbn} className="border p-4 mb-4 rounded shadow hover:bg-gray-100 w-full flex flex-col items-start"
@@ -30,13 +28,13 @@ export default function SearchedBook(props: { title: string; }) {
           );
             
         })}
-        <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => handleAddToReadingList()}>
+        <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(readingList, setReadingList, 'reading')}>
             Reading
         </button>
-        <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => handleAddToAlreadyReadList()}>
+        <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(alreadyReadList, setAlreadyReadList, 'already read')}>
             Already Read
         </button>
-        <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => handleAddToWantToReadList()}>
+        <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(wantToReadList, setWantToReadList, 'want to read')}>
             Want to Read
         </button>
     </>
