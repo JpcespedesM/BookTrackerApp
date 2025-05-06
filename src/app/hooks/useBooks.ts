@@ -18,6 +18,7 @@ export function useBooks() {
       setList([...list, selectedBook]);
       saveToLocalStorage([...list, selectedBook], listName);
       console.log(`Added ${selectedBook} to ${listName} list`);
+      setSelectedBook('');
     } else {
       console.log(`${selectedBook} is already in the ${listName} list`);
     }
@@ -25,12 +26,13 @@ export function useBooks() {
 
   const deleteFromList = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, listName: string) => {
     if (list.includes(selectedBook)) {
-      list.splice(list.indexOf(selectedBook), 1);
-      setList([...list, selectedBook]);
-      saveToLocalStorage([...list, selectedBook], listName);
-      console.log(`Added ${selectedBook} to ${listName} list`);
+      const updatedList = list.filter((isbn) => isbn !== selectedBook);
+      setList(updatedList);
+      saveToLocalStorage(updatedList, listName);
+      setSelectedBook('');
+      console.log(`Removed ${selectedBook} from ${listName} list`);
     } else {
-      console.log(`${selectedBook} is already in the ${listName} list`);
+      console.log(`${selectedBook} is not in the ${listName} list`);
     }
   };
 
