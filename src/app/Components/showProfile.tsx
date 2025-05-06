@@ -7,8 +7,15 @@ import books from '../books.json';
 
 
 export default function ProfileInformation() {
-      const { selectedBook, readingList, alreadyReadList, wantToReadList, setSelectedBook, filterBooks, addToList, setReadingList, setAlreadyReadList, setWantToReadList, loadFromLocalStorage } = useBooks();
-    
+  const {
+    readingList,
+    alreadyReadList,
+    wantToReadList,
+    setReadingList,
+    addToList,
+    deleteFromList,
+    setSelectedBook
+  } = useBooks();    
       const getBookDetails = (isbn: string) => books.find((book) => book.isbn === isbn);
 
   return (
@@ -40,7 +47,7 @@ export default function ProfileInformation() {
         )}
       </section>
 
-      <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300">Manage books</button>
+      <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300" onClick={() => deleteFromList(readingList, setReadingList, 'reading')}>Delete from list</button>
       <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300">Manage Movies</button>
       <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300">Manage TV Shows</button>
     </div>

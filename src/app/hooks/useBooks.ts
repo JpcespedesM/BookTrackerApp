@@ -23,6 +23,17 @@ export function useBooks() {
     }
   };
 
+  const deleteFromList = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, listName: string) => {
+    if (list.includes(selectedBook)) {
+      list.splice(list.indexOf(selectedBook), 1);
+      setList([...list, selectedBook]);
+      saveToLocalStorage([...list, selectedBook], listName);
+      console.log(`Added ${selectedBook} to ${listName} list`);
+    } else {
+      console.log(`${selectedBook} is already in the ${listName} list`);
+    }
+  };
+
   const saveToLocalStorage = (list: string[], listName: string) => {
     window.localStorage.setItem(listName, JSON.stringify(list));
   }
@@ -48,6 +59,7 @@ export function useBooks() {
     setSelectedBook,
     filterBooks,
     addToList,
+    deleteFromList,
     loadFromLocalStorage,
   };
 }
