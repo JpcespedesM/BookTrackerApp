@@ -7,8 +7,12 @@ export default function SearchedBook(props: { title: string; }) {
   
   const { selectedBook, readingList, alreadyReadList, wantToReadList, setSelectedBook, filterBooks, addToList, setReadingList, setAlreadyReadList, setWantToReadList } = useBooks();
 
+  if(props.title === ''){
+    return <p>Start typing</p>;
+  }
+  
   const filteredBooks = filterBooks(props.title);
-
+  
   if (filteredBooks.length === 0) {
     return <p>No books found</p>;
   }
