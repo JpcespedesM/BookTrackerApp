@@ -37,7 +37,7 @@ export function useBooks() {
   };
 
   const saveToLocalStorage = (list: string[], listName: string) => {
-    window.localStorage.setItem(listName, JSON.stringify(list));
+    localStorage.setItem(listName, JSON.stringify(list));
   }
 
   const loadFromLocalStorage = (listName: string) => {
