@@ -1,3 +1,21 @@
+/**
+ * BookForm Component
+ * 
+ * A form component that allows users to search for books by title, ISBN, or author.
+ * The component includes a search input field and displays search results through
+ * the SearchedBook child component.
+ * 
+ * @component
+ * @returns {JSX.Element} A form with search functionality for books
+ * 
+ * State:
+ * - searchTitle: String containing the current search term
+ * 
+ * Child Components:
+ * - SearchedBook: Displays search results based on searchTitle prop
+ */
+
+
 'use client';
 
 import React, { useState } from "react";

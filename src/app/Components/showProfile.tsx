@@ -1,3 +1,33 @@
+/**
+ * ProfileInformation Component
+ * 
+ * Displays a user's reading lists and book details, allowing interaction with books
+ * across different reading status categories.
+ * 
+ * @component
+ * @returns {JSX.Element} A profile view showing reading lists and book details
+ * 
+ * States (from useBooks hook):
+ * - readingList: Array of ISBNs for books currently being read
+ * - alreadyReadList: Array of ISBNs for completed books
+ * - wantToReadList: Array of ISBNs for future reading
+ * - setSelectedBook: Function to set currently selected book
+ * 
+ * Helper Functions:
+ * - getBookDetails: Retrieves full book details from ISBN
+ * 
+ * Sections:
+ * - Reading Now: Shows books currently being read
+ * - Already Read: Shows completed books (not shown in truncated view)
+ * - Want to Read: Shows books planned for future (not shown in truncated view)
+ * 
+ * Features:
+ * - Clickable book entries to select books
+ * - Book details including title, author and ISBN
+ * - Empty state handling for lists with no books
+ */
+
+
 'use client';
 
 import React from 'react';

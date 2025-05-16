@@ -1,3 +1,33 @@
+/**
+ * SearchedBook Component
+ * 
+ * Displays search results for books and provides buttons to add books to different reading lists.
+ * The component filters books based on the search title and allows users to select a book
+ * and add it to their "Reading", "Already Read", or "Want to Read" lists.
+ * 
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.title - Search term to filter books
+ * @returns {JSX.Element} A list of filtered books with action buttons
+ * 
+ * States (from useBooks hook):
+ * - selectedBook: Currently selected book's ISBN
+ * - readingList: Array of books currently being read
+ * - alreadyReadList: Array of completed books
+ * - wantToReadList: Array of books to read in future
+ * 
+ * Actions:
+ * - setSelectedBook: Sets the currently selected book
+ * - addToList: Adds selected book to specified list
+ * 
+ * Rendering:
+ * - Shows "Start typing" when search term is empty
+ * - Shows "No books found" when no matches are found
+ * - Displays matching books with title, author and ISBN
+ * - Shows three buttons to add selected book to different lists
+ */
+
+
 'use client';
 
 import { useBooks } from '../hooks/useBooks';
