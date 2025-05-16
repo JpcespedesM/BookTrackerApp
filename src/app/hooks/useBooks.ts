@@ -41,7 +41,7 @@ export function useBooks() {
   }
 
   const loadFromLocalStorage = (listName: string) => {
-    const list = window.localStorage.getItem(listName);
+    const list = localStorage.getItem(listName);
     return list ? JSON.parse(list) : [];
   };
 
