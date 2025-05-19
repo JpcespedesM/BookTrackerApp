@@ -54,11 +54,11 @@ export function useBooks() {
   };
 
   const saveToLocalStorage = (list: string[], listName: string) => {
-    localStorage.setItem(listName, JSON.stringify(list));
+    window.localStorage.setItem(listName, JSON.stringify(list));
   }
 
   const loadFromLocalStorage = (listName: string) => {
-    const list = localStorage.getItem(listName);
+    const list = window.localStorage.getItem(listName);
     return list ? JSON.parse(list) : [];
   };
 
