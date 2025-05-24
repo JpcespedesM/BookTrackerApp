@@ -32,7 +32,7 @@
 
 import React from 'react';
 import { useBooks } from '../hooks/useBooks';
-import ReadingList from './readingList';
+import List from './list';
 
 export default function ProfileInformation() {
   const {
@@ -47,9 +47,10 @@ export default function ProfileInformation() {
   } = useBooks();    
   return (
     <div className="max-w-md mx-auto mt-10 p-4 border rounded shadow-lg">
-      <ReadingList readingList={readingList} setSelectedBook={setSelectedBook} />
+      <List list={readingList} setSelectedBook={setSelectedBook} listName="📖 Reading Now" />
+      <List list={alreadyReadList} setSelectedBook={setSelectedBook} listName="📚 Already Read" />
+      <List list={wantToReadList} setSelectedBook={setSelectedBook} listName="📖 Want to Read" />
 
-      {/* Ahora los botones pueden trabajar directamente con readingList y setReadingList */}
       <button
         type="button"
         className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300"

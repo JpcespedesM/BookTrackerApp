@@ -4,18 +4,19 @@ import React from 'react';
 import books from '../books.json';
 
 interface Props {
-  wantToReadList: string[];
+  list: string[];
   setSelectedBook: (isbn: string) => void;
+  listName: string;
 }
 
-export default function WantToReadList({ wantToReadList, setSelectedBook }: Props) {
+export default function List({ list, setSelectedBook, listName }: Props) {
   const getBookDetails = (isbn: string) => books.find((book) => book.isbn === isbn);
 
   return (
     <div className="mb-6">
-      <h3 className="text-xl font-semibold mb-2">📖 Want to Read</h3>
-      {wantToReadList.length > 0 ? (
-        wantToReadList.map((isbn) => {
+      <h3 className="text-xl font-semibold mb-2">{listName}</h3>
+      {list.length > 0 ? (
+        list.map((isbn) => {
           const book = getBookDetails(isbn);
           return (
             <button
