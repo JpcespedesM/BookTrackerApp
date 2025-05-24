@@ -20,6 +20,8 @@ import books from '../books.json';
 
 export function useBooks() {
   const [selectedBook, setSelectedBook] = useState('');
+  const [activeCategory, setActiveCategory] = useState<'reading' | 'alreadyRead' | 'wantToRead'>('reading');
+
 
   const filterBooks = (searchTerm: string) => {
     return books.filter(
@@ -63,8 +65,8 @@ export function useBooks() {
   };
 
   const [readingList, setReadingList] = useState<string[]>(loadFromLocalStorage('reading'));
-  const [alreadyReadList, setAlreadyReadList] = useState<string[]>(loadFromLocalStorage('already read'));
-  const [wantToReadList, setWantToReadList] = useState<string[]>(loadFromLocalStorage('want to read'));
+  const [alreadyReadList, setAlreadyReadList] = useState<string[]>(loadFromLocalStorage('alreadyRead'));
+  const [wantToReadList, setWantToReadList] = useState<string[]>(loadFromLocalStorage('wantToRead'));
 
   
   return {
@@ -72,6 +74,8 @@ export function useBooks() {
     readingList,
     alreadyReadList,
     wantToReadList,
+    activeCategory,
+    setActiveCategory,
     setReadingList,
     setAlreadyReadList,
     setWantToReadList,

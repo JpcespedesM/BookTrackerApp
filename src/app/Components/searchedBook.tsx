@@ -65,10 +65,10 @@ export default function SearchedBook(props: { title: string; }) {
         <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(readingList, setReadingList, 'reading')}>
             Reading
         </button>
-        <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(alreadyReadList, setAlreadyReadList, 'already read')}>
+        <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(alreadyReadList, setAlreadyReadList, 'alreadyRead')}>
             Already Read
         </button>
-        <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(wantToReadList, setWantToReadList, 'want to read')}>
+        <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(wantToReadList, setWantToReadList, 'wantToRead')}>
             Want to Read
         </button>
     </>

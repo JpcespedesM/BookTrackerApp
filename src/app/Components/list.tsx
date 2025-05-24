@@ -6,10 +6,11 @@ import books from '../books.json';
 interface Props {
   list: string[];
   setSelectedBook: (isbn: string) => void;
+  setActiveCategory: (category: 'reading' | 'alreadyRead' | 'wantToRead') => void;
   listName: string;
 }
 
-export default function List({ list, setSelectedBook, listName }: Props) {
+export default function List({ list, setSelectedBook, setActiveCategory, listName }: Props) {
   const getBookDetails = (isbn: string) => books.find((book) => book.isbn === isbn);
 
   return (
@@ -23,7 +24,14 @@ export default function List({ list, setSelectedBook, listName }: Props) {
               type="button"
               key={isbn}
               className="border p-4 mb-4 rounded shadow hover:bg-gray-100 w-full flex flex-col items-start"
-              onClick={() => book && setSelectedBook(book.isbn)}
+              onClick={() => {
+                if (book) {
+                  setSelectedBook(book.isbn);
+                  setActiveCategory(listName === "📖 Reading Now" ? 'reading' : 
+                                  listName === "📚 Already Read" ? 'alreadyRead' : 
+                                  'wantToRead');
+                }
+              }}
             >
               {book ? (
                 <>

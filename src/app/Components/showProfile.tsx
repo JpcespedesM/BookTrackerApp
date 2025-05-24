@@ -40,21 +40,53 @@ export default function ProfileInformation() {
     alreadyReadList,
     wantToReadList,
     selectedBook,
+    activeCategory,
     setReadingList,
     addToList,
     deleteFromList,
-    setSelectedBook
-  } = useBooks();    
+    setSelectedBook,
+    setActiveCategory,
+    setAlreadyReadList,
+    setWantToReadList
+  } = useBooks();
+  
+  const handleDelete = () => {
+    let list: string[] = [];
+    let setList: React.Dispatch<React.SetStateAction<string[]>> = () => {};
+    let listName = '';
+  
+    switch (activeCategory) {
+      case 'reading':
+        list = readingList;
+        setList = setReadingList;
+        listName = 'reading';
+        break;
+      case 'alreadyRead':
+        list = alreadyReadList;
+        setList = setAlreadyReadList;
+        listName = 'alreadyRead';
+        break;
+      case 'wantToRead':
+        list = wantToReadList;
+        setList = setWantToReadList;
+        listName = 'wantToRead';
+        break;
+    }
+  
+    deleteFromList(list, setList, listName);
+  };
+  
+
   return (
     <div className="max-w-md mx-auto mt-10 p-4 border rounded shadow-lg">
-      <List list={readingList} setSelectedBook={setSelectedBook} listName="📖 Reading Now" />
-      <List list={alreadyReadList} setSelectedBook={setSelectedBook} listName="📚 Already Read" />
-      <List list={wantToReadList} setSelectedBook={setSelectedBook} listName="📖 Want to Read" />
+      <List list={readingList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📖 Reading Now" />
+      <List list={alreadyReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📚 Already Read" />
+      <List list={wantToReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📖 Want to Read" />
 
       <button
         type="button"
         className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300"
-        onClick={() => deleteFromList(readingList, setReadingList, 'reading')}
+        onClick={handleDelete}
       >
         Delete from list
       </button>
