@@ -78,12 +78,20 @@ export default function ProfileInformation() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-4 border rounded shadow-lg">
-      <List list={readingList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📖 Reading Now" />
-      <List list={alreadyReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📚 Already Read" />
-      <List list={wantToReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📖 Want to Read" />
+    <div className="max-w-7xl mx-auto mt-10 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="border rounded shadow-lg p-4">
+          <List list={readingList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📖 Reading Now" />
+        </div>
+        <div className="border rounded shadow-lg p-4">
+          <List list={alreadyReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📚 Already Read" />
+        </div>
+        <div className="border rounded shadow-lg p-4">
+          <List list={wantToReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📖 Want to Read" />
+        </div>
+      </div>
 
-      <div className="flex gap-2 mt-4">
+      <div className="flex gap-2 mt-4 justify-center">
         <button
           type="button"
           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
