@@ -28,6 +28,27 @@ A modern web application for book enthusiasts to manage their reading journey. T
   - Local Storage for data persistence
   - JSON for book database
 
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── Components/
+│   │   ├── books/        # Book-related components
+│   │   ├── lists/        # List-related components
+│   │   └── profile/      # Profile components
+│   ├── hooks/            # Custom hooks
+│   │   ├── useBooks.ts   # Book search and selection logic
+│   │   └── useReadingLists.ts # Reading lists management
+│   └── types/            # TypeScript type definitions
+│       ├── book.ts       # Book-related types
+│       ├── lists.ts      # List-related types
+│       └── index.ts      # Type exports
+├── page.tsx              # Home page
+└── profile/
+    └── page.tsx          # Profile page
+```
+
 ## 🚀 Getting Started
 
 1. Clone the repository:
@@ -57,6 +78,13 @@ A modern web application for book enthusiasts to manage their reading journey. T
    - Add books to your preferred list (Reading, Already Read, Want to Read)
    - Remove books from lists by selecting them and clicking the delete button
    - View all your lists in the Profile section
+
+## 🏗️ Architecture
+
+- **Components**: Organized by feature (books, lists, profile)
+- **Hooks**: Separated by concern (book search vs list management)
+- **Types**: Centralized type definitions for better maintainability
+- **Pages**: Next.js app router structure for routing
 
 ## 🔜 Future Improvements
 
