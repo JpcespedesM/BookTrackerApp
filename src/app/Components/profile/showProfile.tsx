@@ -31,7 +31,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useBooks } from '../../hooks/useBooks';
+import { useReadingLists } from '../../hooks/useReadingLists';
 import List from '../lists/list';
 
 export default function ProfileInformation() {
@@ -49,7 +49,7 @@ export default function ProfileInformation() {
     setSelectedBook,
     setActiveCategory,
     moveToList
-  } = useBooks();
+  } = useReadingLists();
   
   const handleDelete = () => {
     let list: string[] = [];

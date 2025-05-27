@@ -31,6 +31,7 @@
 'use client';
 
 import { useBooks } from '../../hooks/useBooks';
+import { useReadingLists } from '../../hooks/useReadingLists';
 import React from "react";
 
 interface Book {
@@ -41,7 +42,8 @@ interface Book {
 
 export default function SearchedBook(props: { title: string; }) {
   
-  const { selectedBook, readingList, alreadyReadList, wantToReadList, setSelectedBook, filterBooks, addToList, setReadingList, setAlreadyReadList, setWantToReadList } = useBooks();
+  const { selectedBook, setSelectedBook, filterBooks } = useBooks();
+  const { readingList, alreadyReadList, wantToReadList, setReadingList, setAlreadyReadList, setWantToReadList, addToList } = useReadingLists();
 
   if(props.title === ''){
     return <p>Start typing</p>;
