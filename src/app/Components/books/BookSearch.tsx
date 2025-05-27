@@ -33,6 +33,7 @@
 import { useBooks } from '../../hooks/useBooks';
 import { useReadingLists } from '../../hooks/useReadingLists';
 import React from "react";
+import Link from 'next/link';
 
 interface Book {
   isbn: string;
@@ -58,17 +59,18 @@ export default function SearchedBook(props: { title: string; }) {
     return (
     <>
         {filteredBooks.map((book: Book) => {
-            
           return (
-              <button type="button" key={book.isbn} className="border p-4 mb-4 rounded shadow hover:bg-gray-100 w-full flex flex-col items-start"
-                onClick={() => setSelectedBook(book.isbn)}>
-                  {/* <img src={book.cover} alt={book.title} className="w-16 h-24 mb-2" /> */}
-                  <h3 className="text-xl font-bold">{book.title}</h3>
-                  <p className="text-gray-700">Author: {book.author}</p>
-                  <p className="text-gray-700">ISBN: {book.isbn}</p>
-              </button>
+            <Link 
+              href={`/book/${book.isbn}`}
+              key={book.isbn} 
+              className="block border p-4 mb-4 rounded shadow hover:bg-gray-100 w-full text-left"
+              onClick={() => setSelectedBook(book.isbn)}
+            >
+              <h3 className="text-xl font-bold">{book.title}</h3>
+              <p className="text-gray-700">Author: {book.author}</p>
+              <p className="text-gray-700">ISBN: {book.isbn}</p>
+            </Link>
           );
-            
         })}
         <button type="button" disabled={!selectedBook} className="bg-blue-500 text-white px-4 py-2 rounded mx-2" onClick={() => addToList(readingList, setReadingList, 'reading')}>
             Reading
@@ -81,5 +83,4 @@ export default function SearchedBook(props: { title: string; }) {
         </button>
     </>
     );
-      
 }
