@@ -12,6 +12,7 @@
    * - filterBooks: Function to search books by title, ISBN or author
    * - addToList: Function to add selected book to a specified list
    * - deleteFromList: Function to remove selected book from a specified list
+   * - moveToList: Function to move selected book to a different list
    * - loadFromLocalStorage: Function to load a list from localStorage
    */
 
@@ -21,7 +22,6 @@ import books from '../books.json';
 export function useBooks() {
   const [selectedBook, setSelectedBook] = useState('');
   const [activeCategory, setActiveCategory] = useState<'reading' | 'alreadyRead' | 'wantToRead'>('reading');
-
 
   const filterBooks = (searchTerm: string) => {
     return books.filter(
@@ -55,6 +55,55 @@ export function useBooks() {
     }
   };
 
+  const moveToList = (targetList: 'reading' | 'alreadyRead' | 'wantToRead') => {
+    if (!selectedBook) return;
+
+    // Get current list info
+    const currentListInfo = getListInfo(activeCategory);
+    if (!currentListInfo) return;
+
+    // Get target list info
+    const targetListInfo = getListInfo(targetList);
+    if (!targetListInfo) return;
+
+    // Remove from current list and add to target list
+    const updatedCurrentList = currentListInfo.list.filter(isbn => isbn !== selectedBook);
+    currentListInfo.setList(updatedCurrentList);
+    saveToLocalStorage(updatedCurrentList, currentListInfo.name);
+
+    if (!targetListInfo.list.includes(selectedBook)) {
+      targetListInfo.setList([...targetListInfo.list, selectedBook]);
+      saveToLocalStorage([...targetListInfo.list, selectedBook], targetListInfo.name);
+    }
+
+    setSelectedBook('');
+  };
+
+  const getListInfo = (category: 'reading' | 'alreadyRead' | 'wantToRead') => {
+    switch (category) {
+      case 'reading':
+        return {
+          list: readingList,
+          setList: setReadingList,
+          name: 'reading'
+        };
+      case 'alreadyRead':
+        return {
+          list: alreadyReadList,
+          setList: setAlreadyReadList,
+          name: 'alreadyRead'
+        };
+      case 'wantToRead':
+        return {
+          list: wantToReadList,
+          setList: setWantToReadList,
+          name: 'wantToRead'
+        };
+      default:
+        return null;
+    }
+  };
+
   const saveToLocalStorage = (list: string[], listName: string) => {
     window.localStorage.setItem(listName, JSON.stringify(list));
   }
@@ -68,7 +117,6 @@ export function useBooks() {
   const [alreadyReadList, setAlreadyReadList] = useState<string[]>(loadFromLocalStorage('alreadyRead'));
   const [wantToReadList, setWantToReadList] = useState<string[]>(loadFromLocalStorage('wantToRead'));
 
-  
   return {
     selectedBook,
     readingList,
@@ -83,6 +131,7 @@ export function useBooks() {
     filterBooks,
     addToList,
     deleteFromList,
+    moveToList,
     loadFromLocalStorage,
   };
 }

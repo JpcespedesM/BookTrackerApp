@@ -30,11 +30,12 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useBooks } from '../hooks/useBooks';
 import List from './list';
 
 export default function ProfileInformation() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const {
     readingList,
     alreadyReadList,
@@ -42,12 +43,12 @@ export default function ProfileInformation() {
     selectedBook,
     activeCategory,
     setReadingList,
-    addToList,
+    setAlreadyReadList,
+    setWantToReadList,
     deleteFromList,
     setSelectedBook,
     setActiveCategory,
-    setAlreadyReadList,
-    setWantToReadList
+    moveToList
   } = useBooks();
   
   const handleDelete = () => {
@@ -75,7 +76,6 @@ export default function ProfileInformation() {
   
     deleteFromList(list, setList, listName);
   };
-  
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4 border rounded shadow-lg">
@@ -83,21 +83,67 @@ export default function ProfileInformation() {
       <List list={alreadyReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📚 Already Read" />
       <List list={wantToReadList} setSelectedBook={setSelectedBook} setActiveCategory={setActiveCategory} listName="📖 Want to Read" />
 
-      <button
-        type="button"
-        className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300"
-        onClick={handleDelete}
-      >
-        Delete from list
-      </button>
+      <div className="flex gap-2 mt-4">
+        <button
+          type="button"
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          onClick={handleDelete}
+          disabled={!selectedBook}
+        >
+          Delete from list
+        </button>
 
-      <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300">
-        Manage Movies
-      </button>
-
-      <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded mx-2 mb-4 hover:bg-gray-300">
-        Manage TV Shows
-      </button>
+        <div className="relative">
+          <button
+            type="button"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            disabled={!selectedBook}
+          >
+            Move to list
+          </button>
+          
+          {isDropdownOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border">
+              <div className="py-1">
+                {activeCategory !== 'reading' && (
+                  <button
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => {
+                      moveToList('reading');
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    📖 Reading Now
+                  </button>
+                )}
+                {activeCategory !== 'alreadyRead' && (
+                  <button
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => {
+                      moveToList('alreadyRead');
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    📚 Already Read
+                  </button>
+                )}
+                {activeCategory !== 'wantToRead' && (
+                  <button
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => {
+                      moveToList('wantToRead');
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    📖 Want to Read
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
