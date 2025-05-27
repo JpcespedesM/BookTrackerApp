@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import books from '../books.json';
+import books from '../books/books.json';
 
 interface Props {
   list: string[];

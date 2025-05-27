@@ -19,7 +19,7 @@
 'use client';
 
 import React, { useState } from "react";
-import SearchedBook from "./searchedBook";
+import SearchedBook from "./BookSearch";
 export default function BookForm() {
     const [searchTitle, setSearchTitle] = useState('');
 

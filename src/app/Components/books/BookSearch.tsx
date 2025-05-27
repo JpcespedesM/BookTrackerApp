@@ -30,8 +30,14 @@
 
 'use client';
 
-import { useBooks } from '../hooks/useBooks';
+import { useBooks } from '../../hooks/useBooks';
 import React from "react";
+
+interface Book {
+  isbn: string;
+  title: string;
+  author: string;
+}
 
 export default function SearchedBook(props: { title: string; }) {
   
@@ -49,7 +55,7 @@ export default function SearchedBook(props: { title: string; }) {
   
     return (
     <>
-        {filteredBooks.map((book) => {
+        {filteredBooks.map((book: Book) => {
             
           return (
               <button type="button" key={book.isbn} className="border p-4 mb-4 rounded shadow hover:bg-gray-100 w-full flex flex-col items-start"

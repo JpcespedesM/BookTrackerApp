@@ -1,13 +1,9 @@
-import Header from "../Components/header";
-import ProfileInformation from "../Components/showProfile";
-import React from "react";
+import ProfileInformation from '../Components/profile/showProfile';
 
 export default function Profile() {
   return (
-    <>
-      <Header />
-        <ProfileInformation />
-    </>
-    
+    <main>
+      <ProfileInformation />
+    </main>
   );
 }

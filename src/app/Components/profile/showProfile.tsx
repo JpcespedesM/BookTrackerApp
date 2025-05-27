@@ -31,8 +31,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useBooks } from '../hooks/useBooks';
-import List from './list';
+import { useBooks } from '../../hooks/useBooks';
+import List from '../lists/list';
 
 export default function ProfileInformation() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
