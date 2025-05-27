@@ -1,12 +1,5 @@
 import { useState } from 'react';
-
-type ListCategory = 'reading' | 'alreadyRead' | 'wantToRead';
-
-interface ListInfo {
-  list: string[];
-  setList: React.Dispatch<React.SetStateAction<string[]>>;
-  name: ListCategory;
-}
+import { Book, ListCategory, ListInfo } from '@/types';
 
 export function useReadingLists() {
   const [activeCategory, setActiveCategory] = useState<ListCategory>('reading');
