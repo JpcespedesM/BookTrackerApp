@@ -1,5 +1,11 @@
 /**
  * Custom hook for managing book-related operations
+ * 
+ * This hook is responsible for book search and retrieval operations.
+ * It provides functionality to:
+ * - Search books by title, ISBN or author
+ * - Get detailed information about a specific book
+ * 
  * @returns {Object} An object containing:
  * - filterBooks: Function to search books by title, ISBN or author
  * - getBookDetails: Function to get book details by ISBN
